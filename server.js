@@ -6,10 +6,10 @@ const knex = require('knex');
 const database = knex({
     client: 'mysql',
     connection: {
-        host: 'localhost',
-        user: 'root',
-        password: 'password',
-        database: 'final_project'
+        host: 'us-cdbr-iron-east-01.cleardb.net',
+        user: 'b9ffd1ac7a5ac2',
+        password: 'ae7bd7e7',
+        database: 'heroku_31114c71b0c2257'
     }
 })
 
@@ -18,10 +18,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get('/', (req,res) =>{
-    {/*database.select('*').from('top_products')
+        database.select('*').from('top_products')
         .then(products =>{
             res.json(products)
-        }) */}
+        })
         res.send('it is working!')
 })
 
