@@ -18,10 +18,11 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get('/', (req,res) =>{
-    database.select('*').from('top_products')
+    {/*database.select('*').from('top_products')
         .then(products =>{
             res.json(products)
-        })
+        }) */}
+        res.send('it is working!')
 })
 
 app.listen(process.env.PORT || 3000, () => {
