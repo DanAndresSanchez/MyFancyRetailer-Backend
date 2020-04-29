@@ -18,6 +18,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get('/', (req,res) =>{
+        database.connect();
         database.select('*').from('top_products')
         .then(products =>{
             res.json(products)
