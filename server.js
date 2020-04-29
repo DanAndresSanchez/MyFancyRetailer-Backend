@@ -4,7 +4,7 @@ const cors = require('cors');
 const knex = require('knex');
 
 const database = knex({
-    client: 'mysql',
+    client: 'ClearDB',
     connection: {
         host: 'us-cdbr-iron-east-01.cleardb.net',
         user: 'b9ffd1ac7a5ac2',
