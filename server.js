@@ -1,3 +1,5 @@
+import * as mysql from "mysql";
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -16,10 +18,11 @@ const database = knex({
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
+var connection = mysql.createConnection('mysql://b9ffd1ac7a5ac2:ae7bd7e7@us-cdbr-iron-east-01.cleardb.net/heroku_31114c71b0c2257?reconnect=true');
 
 app.get('/', (req,res) =>{
-        database.connect();
-        database.select('*').from('top_products')
+        connection.connect();
+        connection.select('*').from('top_products')
         .then(products =>{
             res.json(products)
         })
