@@ -18,10 +18,11 @@ const database = knex({
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
-var connection = mysql.createConnection('mysql://b9ffd1ac7a5ac2:ae7bd7e7@us-cdbr-iron-east-01.cleardb.net/heroku_31114c71b0c2257?reconnect=true');
-
 app.get('/', (req,res) =>{
-
+        database.select('*').from('top_products')
+        .then(products =>{
+            res.json(products)
+        })
         res.send('it is working!')
 })
 
