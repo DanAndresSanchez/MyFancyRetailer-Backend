@@ -22,7 +22,7 @@ app.get('/', (req,res) =>{
         .then(products =>{
             res.json(products)
         }).catch(err => res.json('Could not get data.'))
-    {/*res.send('it is working!')*/}
+    res.send('it is working!')
 })
 
 app.listen(process.env.PORT || 3000, () => {
