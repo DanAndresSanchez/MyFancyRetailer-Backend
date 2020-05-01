@@ -15,6 +15,7 @@ const database = mysql.createConnection({
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
+database.connect();
 app.get('/', (req,res) =>{
     database.select('*').from('top_products')
         .then(products =>{
