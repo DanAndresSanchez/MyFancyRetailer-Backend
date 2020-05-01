@@ -21,7 +21,7 @@ app.get('/', (req,res) =>{
         database.select('*').from('top_products')
         .then(products =>{
             res.json(products)
-        })
+        }).catch(err => res.json('Could not get data.'))
         res.send('it is working!')
 })
 
