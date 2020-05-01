@@ -17,11 +17,13 @@ app.use(bodyParser.json());
 app.use(cors());
 database.connect();
 app.get('/', (req,res) =>{
-    database.select('*').from('top_products')
-        .then(products =>{
-            res.json(products)
-        }).catch(err => res.json('Could not get data.'))
-    res.send('it is working!')
+    database.query('call top_products();', function(err, rows, fields){
+      if(err){
+          console.log('error', err);
+          throw err;
+      }
+      res.send(json(rows));
+    })
 })
 
 app.listen(process.env.PORT || 3000, () => {
