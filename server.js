@@ -7,7 +7,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 const database = knex({
     client:'mysql',
     connection: {
-        connectionString: process.env.DATABASE_URL,
+        connectionString: process.env.CLEARD_DATABASE_URL,
         ssl: true
     }
 })
