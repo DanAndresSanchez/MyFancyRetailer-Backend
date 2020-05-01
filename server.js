@@ -7,10 +7,8 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 const database = knex({
     client:'mysql',
     connection: {
-        host: 'us-cdbr-iron-east-01.cleardb.net',
-        user: 'b9ffd1ac7a5ac2',
-        password: 'ae7bd7e7',
-        database: 'heroku_31114c71b0c2257'
+        connectionString: process.env.DATABASE_URL,
+        ssl: true
     }
 })
 
