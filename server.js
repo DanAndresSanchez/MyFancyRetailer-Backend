@@ -2,28 +2,27 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const knex = require('knex');
-const mysql = require('mysql');
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
-const database = mysql.createConnection({
+const database = knex({
+    client:'mysql',
+    connection: {
         host: 'us-cdbr-iron-east-01.cleardb.net',
         user: 'b9ffd1ac7a5ac2',
         password: 'ae7bd7e7',
         database: 'heroku_31114c71b0c2257'
+    }
 })
 
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
-database.connect();
 app.get('/', (req,res) =>{
-    database.query('call top_products();', function(err, rows, fields){
-      if(err){
-          console.log('error', err);
-          throw err;
-      }
-      res.json(rows);
-    })
+    database.select('*').from('top_products')
+        .then(products =>{
+            res.json(products)
+        }).catch(err => res.json('Could not get data.'))
+    {/*res.send('it is working!')*/}
 })
 
 app.listen(process.env.PORT || 3000, () => {
